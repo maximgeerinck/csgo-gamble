@@ -1,0 +1,16 @@
+nginx:
+  build: ./nginx
+  links:
+    - node1:node1
+  ports:
+    - "80:80"
+node1:
+  build: ./node
+  links:
+    - mongo
+  ports:
+    - "8080"
+  environment:
+    - DB_NAME=csgo
+mongo:
+  build: ./mongo
